@@ -30,6 +30,7 @@ use tracing::{error, info, warn};
 use url::Url;
 
 pub mod http;
+pub mod oss;
 
 // NAME is the name of the package.
 pub const NAME: &str = "backend";
@@ -53,6 +54,10 @@ pub struct HeadRequest {
 
     // client_certs is the client certificates for the request.
     pub client_certs: Option<Vec<CertificateDer<'static>>>,
+
+    /// recursive is used to determine whether recursive directory traversal is need.
+    /// Will be ignored when the url is not point to a directory.
+    pub recursive: bool,
 }
 
 // HeadResponse is the head response for backend.
@@ -71,6 +76,14 @@ pub struct HeadResponse {
 
     // error_message is the error message of the response.
     pub error_message: Option<String>,
+
+    /// entrys is the entrys of target directory, if recursive is enabled,
+    /// it will return all the file entries of the directory, otherwise, it will
+    /// return the file entries just in the directory.
+    pub entries: Option<Vec<DirEntry>>,
+
+    /// represent the total file number of the request path
+    pub total_file_number: usize,
 }
 
 // GetRequest is the get request for backend.
@@ -127,6 +140,15 @@ where
             .await?;
         Ok(buffer)
     }
+}
+
+/// The File Entry of a directory, including some relevant file metadata.
+pub struct DirEntry {
+    pub url: String,
+    pub content_length: usize,
+    /// if this entry represents a file, then entry is `None`,
+    /// otherwise is `Some(Vec<DirEntry>)`
+    pub entrys: Option<Vec<DirEntry>>,
 }
 
 // Backend is the interface of the backend.

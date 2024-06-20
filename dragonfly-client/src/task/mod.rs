@@ -139,6 +139,7 @@ impl Task {
                 http_header: Some(request_header),
                 timeout: self.config.download.piece_timeout,
                 client_certs: None,
+                recursive: false,
             })
             .await?;
 
