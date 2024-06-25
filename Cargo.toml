@@ -13,7 +13,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.1.81"
+version = "0.1.82"
 authors = ["The Dragonfly Developers"]
 homepage = "https://d7y.io/"
 repository = "https://github.com/dragonflyoss/client.git"
@@ -23,15 +23,15 @@ readme = "README.md"
 edition = "2021"
 
 [workspace.dependencies]
-dragonfly-client = { path = "dragonfly-client", version = "0.1.81" }
-dragonfly-client-core = { path = "dragonfly-client-core", version = "0.1.81" }
-dragonfly-client-config = { path = "dragonfly-client-config", version = "0.1.81" }
-dragonfly-client-storage = { path = "dragonfly-client-storage", version = "0.1.81" }
-dragonfly-client-backend = { path = "dragonfly-client-backend", version = "0.1.81" }
-dragonfly-client-util = { path = "dragonfly-client-util", version = "0.1.81" }
-dragonfly-client-init = { path = "dragonfly-client-init", version = "0.1.81" }
+dragonfly-client = { path = "dragonfly-client", version = "0.1.82" }
+dragonfly-client-core = { path = "dragonfly-client-core", version = "0.1.82" }
+dragonfly-client-config = { path = "dragonfly-client-config", version = "0.1.82" }
+dragonfly-client-storage = { path = "dragonfly-client-storage", version = "0.1.82" }
+dragonfly-client-backend = { path = "dragonfly-client-backend", version = "0.1.82" }
+dragonfly-client-util = { path = "dragonfly-client-util", version = "0.1.82" }
+dragonfly-client-init = { path = "dragonfly-client-init", version = "0.1.82" }
 thiserror = "1.0"
-dragonfly-api = "2.0.115"
+dragonfly-api = "2.0.124"
 reqwest = { version = "0.12.4", features = ["stream", "native-tls", "default-tls", "rustls-tls"] }
 rcgen = { version = "0.12.1", features = ["x509-parser"] }
 hyper = { version = "1.2", features = ["full"] }
@@ -46,13 +46,13 @@ hyper-util = { version = "0.1.2", features = [
 hyper-rustls = { version = "0.26", features = ["http1", "http2", "logging"] }
 http-range-header = "0.4.1"
 tracing = "0.1"
-url = "2.4.0"
+url = "2.5.2"
 rustls = "0.22.4"
 rustls-pki-types = "1.7.0"
 rustls-pemfile = "2.1.1"
 sha2 = "0.10"
 blake3 = "1.5.1"
-uuid = { version = "1.8", features = ["v4"] }
+uuid = { version = "1.9", features = ["v4"] }
 hex = "0.4"
 rocksdb = "0.22.0"
 serde = { version = "1.0", features = ["derive"] }
@@ -71,7 +71,7 @@ humantime = "2.1.0"
 prost-wkt-types = "0.4"
 chrono = { version = "0.4.35", features = ["serde"] }
 openssl = { version = "0.10", features = ["vendored"] }
-clap = { version = "4.5.6", features = ["derive"] }
+clap = { version = "4.5.7", features = ["derive"] }
 anyhow = "1.0.86"
 toml_edit = "0.22.14"
 toml = "0.8.13"
