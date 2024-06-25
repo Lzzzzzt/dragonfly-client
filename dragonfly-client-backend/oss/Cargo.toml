@@ -1,0 +1,27 @@
+[package]
+name = "oss"
+description = "The OSS plugin for the Dragonfly client backend"
+version.workspace = true
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+keywords.workspace = true
+license.workspace = true
+edition.workspace = true
+publish = false
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+dragonfly-client-core.workspace = true
+dragonfly-client-util.workspace = true
+dragonfly-client-backend.workspace = true
+reqwest.workspace = true
+rustls.workspace = true
+rustls-pki-types.workspace = true
+tonic.workspace = true
+tokio-util.workspace = true
+url.workspace = true
+tracing.workspace = true
+opendal = { version = "0.47.0", features = ["services-oss"] }

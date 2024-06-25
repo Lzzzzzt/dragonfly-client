@@ -30,7 +30,6 @@ use tracing::{error, info, warn};
 use url::Url;
 
 pub mod http;
-pub mod oss;
 
 // NAME is the name of the package.
 pub const NAME: &str = "backend";
@@ -58,6 +57,15 @@ pub struct HeadRequest {
     /// recursive is used to determine whether recursive directory traversal is need.
     /// Will be ignored when the url is not point to a directory.
     pub recursive: bool,
+
+    /// the max entry number of list operation, will ignore when url point to a file
+    pub file_number_limit: usize,
+
+    /// the access key ID of the Object Storage Services
+    pub access_key_id: Option<String>,
+
+    /// the access key secret of the Object Storage Services
+    pub access_key_secret: Option<String>,
 }
 
 // HeadResponse is the head response for backend.
@@ -81,9 +89,6 @@ pub struct HeadResponse {
     /// it will return all the file entries of the directory, otherwise, it will
     /// return the file entries just in the directory.
     pub entries: Option<Vec<DirEntry>>,
-
-    /// represent the total file number of the request path
-    pub total_file_number: usize,
 }
 
 // GetRequest is the get request for backend.
@@ -105,6 +110,12 @@ pub struct GetRequest {
 
     // client_certs is the client certificates for the request.
     pub client_certs: Option<Vec<CertificateDer<'static>>>,
+
+    /// the access key ID of the Object Storage Services
+    pub access_key_id: Option<String>,
+
+    /// the access key secret of the Object Storage Services
+    pub access_key_secret: Option<String>,
 }
 
 // GetResponse is the get response for backend.
@@ -146,9 +157,7 @@ where
 pub struct DirEntry {
     pub url: String,
     pub content_length: usize,
-    /// if this entry represents a file, then entry is `None`,
-    /// otherwise is `Some(Vec<DirEntry>)`
-    pub entrys: Option<Vec<DirEntry>>,
+    pub is_dir: bool,
 }
 
 // Backend is the interface of the backend.

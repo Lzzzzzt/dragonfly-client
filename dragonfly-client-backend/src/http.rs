@@ -105,7 +105,6 @@ impl crate::Backend for HTTP {
             http_status_code: Some(status_code),
             error_message: Some(status_code.to_string()),
             entries: None,
-            total_file_number: 1,
         })
     }
 
@@ -184,6 +183,9 @@ mod tests {
                 timeout: std::time::Duration::from_secs(5),
                 client_certs: None,
                 recursive: false,
+                access_key_id: None,
+                access_key_secret: None,
+                file_number_limit: 0,
             })
             .await
             .unwrap();
@@ -210,6 +212,9 @@ mod tests {
                 timeout: std::time::Duration::from_secs(5),
                 client_certs: None,
                 recursive: false,
+                access_key_id: None,
+                access_key_secret: None,
+                file_number_limit: 0,
             })
             .await;
 
@@ -235,6 +240,8 @@ mod tests {
                 http_header: Some(HeaderMap::new()),
                 timeout: std::time::Duration::from_secs(5),
                 client_certs: None,
+                access_key_id: None,
+                access_key_secret: None,
             })
             .await
             .unwrap();

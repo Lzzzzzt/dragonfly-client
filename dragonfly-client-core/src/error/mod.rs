@@ -153,6 +153,9 @@ pub enum DFError {
     #[error(transparent)]
     BackendError(BackendError),
 
+    #[error("Backend SDK({0}) Error: {1}")]
+    BackendSDKError(String, String),
+
     // HyperUtilClientLegacyError is the error for hyper util client legacy.
     #[error(transparent)]
     HyperUtilClientLegacyError(#[from] hyper_util::client::legacy::Error),
